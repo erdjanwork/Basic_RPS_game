@@ -88,7 +88,6 @@ if game_mode == "2":
     player_wins_counter = 0
     computer_wins_counter = 0
     while player_wins_counter < 2 and computer_wins_counter < 2:
-        player_one_input = input("Choose your move:")
         computer_input = random.choice(choices)
         while True:
             player_one_input = input("Choose your move: ")
@@ -96,20 +95,27 @@ if game_mode == "2":
                 break
             else:
                 print("Invalid input! Please enter either 'rock', 'paper', or 'scissors'.")
+        # Define a dictionary that maps the winning combinations to the winning player
+        winning_combinations = {
+            ("rock", "scissors"): "player",
+            ("paper", "rock"): "player",
+            ("scissors", "paper"): "player",
+            ("rock", "paper"): "computer",
+            ("paper", "scissors"): "computer",
+            ("scissors", "rock"): "computer"
+        }
+
+        # Determine the winner using the dictionary
         if player_one_input == computer_input:
             print(f"Computer choose:{computer_input}")
             print("Draw")
-        elif player_one_input == "rock" and computer_input == "scissors":
+        elif (player_one_input, computer_input) in winning_combinations:
             print(f"Computer choose:{computer_input}")
-            player_wins_counter += 1
-            print(f"Player:{player_wins_counter} - Computer:{computer_wins_counter}")
-        elif player_one_input == "paper" and computer_input == "rock":
-            print(f"Computer choose:{computer_input}")
-            player_wins_counter += 1
-            print(f"Player:{player_wins_counter} - Computer:{computer_wins_counter}")
-        elif player_one_input == "scissors" and computer_input == "paper":
-            print(f"Computer choose:{computer_input}")
-            player_wins_counter += 1
+            winner = winning_combinations[(player_one_input, computer_input)]
+            if winner == "player":
+                player_wins_counter += 1
+            else:
+                computer_wins_counter += 1
             print(f"Player:{player_wins_counter} - Computer:{computer_wins_counter}")
         else:
             print(f"Computer choose:{computer_input}")
