@@ -79,7 +79,7 @@ if game_mode == '1':
 
 # In game mode (2) we are creating a while loop which loops until the user or the computer reaches two wins
 # Every time the user or the computers wins we add +1 to a counter
-# When we counter reaches 2 we break the while loop and print out the winner.
+# When the counter reaches 2 we break the while loop and print out the winner.
 
 # Game mode - > 2
 if game_mode == "2":
